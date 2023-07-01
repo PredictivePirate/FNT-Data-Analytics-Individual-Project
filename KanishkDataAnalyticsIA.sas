@@ -1,0 +1,46 @@
+proc import file="/home/u59513296/IndividualAssignment/FNT 204 Data Analytics/Individiual Analytics Assignment _data file KK.xlsx"
+out=rahimstore
+dbms=xlsx
+replace;
+getnames=yes;
+run;
+proc print data=rahimstore;
+run;
+proc contents data=rahimstore;
+run;
+proc freq data=rahimstore;
+table Sales_Transaction;
+run;
+proc means data=rahimstore min max mean median mode skewness ;
+run;
+proc univariate data=rahimstore;
+run;
+PROC ANOVA DATA=rahimstore;
+CLASS Family_Income;
+MODEL Sales_Transaction=Family_Income ;
+RUN;
+proc sgplot data=rahimstore;
+   scatter x=Sales_Transaction y=Family_Income / markerattrs=(color=blue);
+   xaxis label='Sales Transaction';
+   yaxis label='Family Income';
+   run;
+proc sgplot data=rahimstore;
+   scatter x=Sales_Transaction y=Family_Size / markerattrs=(color=blue);
+   xaxis label='Sales Transaction';
+   yaxis label='Family Size';
+   run;
+proc sgplot data=rahimstore;
+   scatter x=Sales_Transaction y=Number_of_items / markerattrs=(color=blue);
+   xaxis label='Sales Transaction';
+   yaxis label='Number of items';
+   run;   
+proc sgplot data=rahimstore;
+   scatter x=Sales_Transaction y=Number_of_Vehicles / markerattrs=(color=blue);
+   xaxis label='Sales Transaction';
+   yaxis label='Number of vehicles';
+   run;
+ proc sgplot data=rahimstore;
+   scatter x=Sales_Transaction y=Distance_to_Store / markerattrs=(color=blue);
+   xaxis label='Sales Transaction';
+   yaxis label='Distance to store (km)';
+   run;
